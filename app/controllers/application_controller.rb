@@ -4,8 +4,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :views, "app/views"
-    enable :sessions
-    set :session_secret, "password_security"
+   
   end
 
   get "/" do
@@ -17,7 +16,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/signup" do
-    @user = User.new(username: params[:password], password: params[:password])
+    @user = User.new(username: params[:username], password: params[:password])
     if @user.save
       redirect to '/account'
     else redirect '/failure'
